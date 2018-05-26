@@ -43,32 +43,23 @@ window.onload = function () {
 }
 
 function loadmap(){
+    let geocoder : object = new google.maps.Geocoder();
     map = new google.maps.Map(
 
         document.getElementById("displaymap"),
         initMapConfig
     );
-   // addMarker(LatLngValue);
-    //GetCordinate("1 Yonge Street Toronto, Ontario, Canada");
+  
 }
-   /* function GetCordinate(address:string):LatLng{
-        let geoCoder:object = new google.maps.Geocoder();
-
-        geoCoder.geocode({'address':address},function(data,status){
-            if(status==='OK'){
-                //console.log('lat: '+ data[0].geometry.location.lat());
-                //console.log('lng: '+ data[0].geometry.location.lng());
-            }
-        });
-    }*/
+   
 
 
 function addGeocoderMarker(){
     let responselatlng : LatLng = {lat: 0, lng: 0};
     geocoder = new google.maps.Geocoder();
-    if (index < mapMarkers.length) {
+    if (index < coolocation.length) {
         console.log(index);
-        let address : string = mapMarkers[index].Address;
+        let address : string = coolocation[index].address;
         geocoder.geocode(
             {'address': address},
             function (results, status) {
