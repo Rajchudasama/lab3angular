@@ -1,4 +1,7 @@
 let map:any;
+let index = 0;
+
+let coolocation : MapMarker[] = [];
 interface LatLng{
     lat:number,
     lng:number
@@ -23,6 +26,17 @@ let LatLngValue:LatLng={
 }
 
 let initMapConfig:GoogleMapsConfig={center:LatLngValue,zoom:8}
+
+$.ajax ({
+    url: './locations.json',
+    datatype: 'json',
+    success: function (data) {
+        for(let cl of data) {
+            let newcoolocation : MapMarker = new MapMarker(cl.address);
+            coolocation.push(newcoolocation);
+        }
+    }
+});
 
 function loadmap(){
     map = new google.maps.Map(
